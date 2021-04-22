@@ -7,7 +7,7 @@ def distance_from_origin(commands):
         else:
             left += int(command[1:])
     # I don't understand why answer is 50
-    return right, left
+    return abs(right-left)
 
 
 if __name__ == '__main__':
