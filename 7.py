@@ -1,14 +1,11 @@
-
-# should be edited, cause there's 2TB space left
-def knapsack(weights, capacity):
-    weights.sort(reverse=True)
-    counter = 0
-    for weight in weights:
-        if capacity > weight:
-            counter += 1
-            capacity -= weight
-
-    return counter, capacity
+def knapsack(hdrives, capacity):
+    hdrives.sort(reverse=True)
+    counter = cap = 0
+    for hdrive in hdrives:
+        if cap >= capacity:
+            return counter
+        counter += 1
+        cap += hdrive
 
 
 if __name__ == '__main__':
