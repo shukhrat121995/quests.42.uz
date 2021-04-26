@@ -1,32 +1,25 @@
-# First try to graph it on a paper, and you will see that after visiting each vertices you have to pick the smallest
-# one which is not in your visited list
-import sys
+# First try to graph it on a paper
+import itertools
 
 
 def min_cost_paht(routes):
-    start = 'Namangan'
-    visited = list()
-    visited.append(start)
-    res = 0
+    start = "Namangan"
+    vertices = list(itertools.permutations
+                    (['Namangan', 'Tashkent', 'Bukhara', 'Samarkand', 'Fergana', 'Andijan', 'Termiz', 'Nukus'])
+                    )
+    distance = []
+    for v in vertices:
+        path = 0
+        if v[0] == start:
+            for i in range(len(v)-1):
+                for r in routes:
+                    temp = r.split()
+                    if v[i] in r and v[i+1] in r:
+                        path += int(temp[-1])
+        if path != 0:
+            distance.append(path)
 
-    while len(visited) < 8:
-        minimum = sys.maxsize
-        name = ""
-        for route in routes:
-            if start in route:
-                temp = route.split()
-                if int(temp[4]) < minimum and (temp[0] not in visited or temp[2] not in visited):
-                    minimum = int(temp[4])
-                    if temp[0] != start:
-                        name = temp[0]
-                    else:
-                        name = temp[2]
-        start = name
-        print(minimum)
-        res += minimum
-        visited.append(start)
-
-    return visited, res
+    print(min(distance))
 
 
 if __name__ == '__main__':
